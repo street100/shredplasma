@@ -18,13 +18,14 @@ cd /home/$USER/themefiles
 
 echo "Getting files..."
 wget https://www.opencode.net/phob1an/psion/-/archive/master/psion-master.tar.gz -P $location
+wget https://github.com/street100/shredplasma/blob/main/themefiles/nimbus-aurorae.tar.xz -P $location
+wget https://github.com/street100/shredplasma/blob/main/themefiles/buuf-cursors.tgz -P $location
 git clone https://git.disroot.org/eudaimon/buuf-nestort.git $location/buuf-icons/
 git clone https://github.com/street100/shredplasma/blob/main/themefiles/Soil.colors $location/color-scheme
-git clone https://github.com/street100/shredplasma/blob/main/themefiles/nimbus-aurorae.tar.xz $location
-git clone https://github.com/street100/shredplasma/blob/main/themefiles/buuf-cursors.tgz $location
 echo "Extracting..."
 tar -xvzf $location/psion-master.tar.gz -C $location
 tar -xvzf $location/nimbus-aurorae.tar.xz -C $location/aurorae
+tar -zxvf $location/buuf-cursors.tgz -C $location/buuf-cursors
 echo "Copying parts to their locations..."
 echo "Global Theme first..."
 cp -r $location/psion-master/look-and-feel /usr/share/plasma/
