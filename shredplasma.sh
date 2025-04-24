@@ -56,4 +56,4 @@ echo "Setting default theme..."
 sed -i "s/Current=/Current=TerminalStyleLogin/" /usr/lib/sddm/sddm.conf.d/default.conf
 echo "Done. Set."
 echo ""
-read -p "All done. Hit enter to finish."
+read -p "All done. Reboot after. Hit enter to finish this script."
