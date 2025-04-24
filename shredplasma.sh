@@ -11,45 +11,38 @@ echo "mattahan & aroche @ deviantart.com  - original buuf cursors, then animated
 echo "Charles O'Rear, January 1998. bliss - background, windows xp bliss"
 echo ""
 read -p "Enter username: " USER
-home=/home/$user
-location=/home/$USER/themefiles
-mkdir /home/$USER/themefiles
-cd /home/$USER/themefiles
+main=/home/$USER/shredplasma
+location=$main/themefiles
 
 echo "Getting files..."
-wget https://www.opencode.net/phob1an/psion/-/archive/master/psion-master.tar.gz -P $location
-wget https://github.com/street100/shredplasma/blob/main/themefiles/nimbus-aurorae.tar.xz -P $location
-wget https://github.com/street100/shredplasma/blob/main/themefiles/buuf-cursors.tgz -P $location
+git clone https://github.com/street100/shredplasma/ $main
 git clone https://git.disroot.org/eudaimon/buuf-nestort.git $location/buuf-icons/
-git clone https://github.com/street100/shredplasma/blob/main/themefiles/Soil.colors $location/color-scheme
+wget https://www.opencode.net/phob1an/psion/-/archive/master/psion-master.tar.gz -P $location
+
 echo "Extracting..."
 tar -xvzf $location/psion-master.tar.gz -C $location
-tar -xvzf $location/nimbus-aurorae.tar.xz -C $location/aurorae
-tar -zxvf $location/buuf-cursors.tgz -C $location/buuf-cursors
 echo "Copying parts to their locations..."
 echo "Global Theme first..."
 cp -r $location/psion-master/look-and-feel /usr/share/plasma/
 echo "Icons..."
-cp -r $location/buuf-icons /usr/share/icons
+cp -r $location/buuf-icons /usr/share/icons/
 echo "Cursors..."
-cp -r $location/buuf-cursors /usr/share/icons
+cp -r $location/buuf-cursors /usr/share/icons/
 echo "Window decoration..."
-cp -r $location/aurorae/ /usr/share/aurorae/themes
+cp -r $location/nimbus /usr/share/aurorae/themes/
 echo "Color scheme..."
-cp -r $location/color-scheme/Soil.colors /usr/share/color-schemes/
+cp -r $location/Soil.colors /usr/share/color-schemes/
+echo "Plasma style..."
+cp -r $location/psion-ps /usr/share/plasma/
+
 
 echo "Applying settings..."
 lookandfeeltool -a org.magpie.psion.desktop
 plasma-apply-colorscheme /usr/share/color-schemes/Soil.colors
-
-echo "Copying over windows xp bliss..."
-git clone https://github.com/street100/shredplasma/blob/main/themefiles/windows-xp-bliss-4k-lu-1920x1080.jpg $location/Wallpapers/
 echo "Applying bliss..."
-plasma-apply-wallpaperimage $location/Wallpapers/windows-xp-bliss-4k-lu-1920x1080.jpg
+plasma-apply-wallpaperimage $location/windows-xp-bliss-4k-lu-1920x1080.jpg
 
-echo "Make sure you apply the Window Decoration Manually, as KDE Plasma has not yet made a command for it."
-echo "Make sure you apply the installed cursors manually, as there has yet to be a command for it."
-echo "Make sure to also manually set desktop sounds, splash screen, and lock screen"
+echo "Make sure to manually set desktop sounds, splash screen, and lock screen, etc. Many options lack commands."
 read -p "do so, and then come back and hit enter to install sddm theme."
 
 echo "Installing theme, Terminal Style Login..."
